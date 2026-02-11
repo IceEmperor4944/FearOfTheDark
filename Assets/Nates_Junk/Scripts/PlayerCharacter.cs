@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerCharacter : MonoBehaviour
 {
     Rigidbody rb;
+    [SerializeField] Camera cam;
 
     [SerializeField] float moveForce = 1.0f;
 
@@ -34,6 +35,23 @@ public class PlayerCharacter : MonoBehaviour
             {
                 rb.AddForce(new Vector3(10 * moveForce, 0, 0));
             }
+        }
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, /*cam.transform.forward*/ transform.forward, out hit, 5.0f))
+        {
+            Debug.DrawLine(transform.position, hit.point, Color.red);
+            if (hit.collider.TryGetComponent(out Interactible inter))
+            {
+                if (Keyboard.current.eKey.wasPressedThisFrame)
+                {
+                    inter.Interact(gameObject);
+                }
+            }
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, transform.forward * 5.0f, Color.green);
         }
     }
 }
