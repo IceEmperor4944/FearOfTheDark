@@ -97,8 +97,6 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
-Assets/Kays_Work/Lvl_Terrain.asset
-Assets/Kays_Work/Lvl_Terrain.asset.meta
 Assets/Kays_Work/OutsideAssets.meta
 Assets/Kays_Work/OutsideAssets/_TerrainAutoUpgrade.meta
 Assets/Kays_Work/OutsideAssets/_TerrainAutoUpgrade/layer_grass2_diffuse2023054508611406.terrainlayer
