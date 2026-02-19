@@ -1522,3 +1522,8 @@ Assets/Kays_Work/skybox/StarSkybox04/StarSkybox045.png
 Assets/Kays_Work/skybox/StarSkybox04/StarSkybox045.png.meta
 Assets/Kays_Work/skybox/StarSkybox04/StarSkybox046.png
 Assets/Kays_Work/skybox/StarSkybox04/StarSkybox046.png.meta
+Packages/manifest.json
+Packages/packages-lock.json
+ProjectSettings/PackageManagerSettings.asset
+ProjectSettings/ShaderGraphSettings.asset
+ProjectSettings/URPProjectSettings.asset
