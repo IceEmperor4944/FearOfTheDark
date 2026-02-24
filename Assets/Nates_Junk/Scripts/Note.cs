@@ -5,6 +5,7 @@ public class Note : Interactible
 {
     public int noteId;
     [SerializeField] GameObject ui;
+    [SerializeField] AudioSource noteAudio;
 
 #nullable enable
     [SerializeField] GameObject? jumpscare;
@@ -29,7 +30,9 @@ public class Note : Interactible
     public override void Interact(GameObject other)
     {
         ui.BroadcastMessage("DisplayNote", noteTexts[noteId]);
-        if (hasJumpscare) StartCoroutine(Jumpscare());
+        if (hasJumpscare) StartCoroutine(Jumpscare()); 
+        noteAudio.Play();
+
     }
 
     IEnumerator Jumpscare()
