@@ -1,16 +1,21 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerCharacter : MonoBehaviour
 {
     Rigidbody rb;
-    [SerializeField] Camera cam;
+    [SerializeField] GameObject cam;
+    [SerializeField] GameObject flashlight;
 
-    [SerializeField] float moveForce = 1.0f;
+    public float moveForce = 1.0f;
+    public float sensitivity = 10.0f;
 
     void Start()
     {
-        rb = (TryGetComponent(out Rigidbody r) ? r : null);
+        rb = TryGetComponent(out Rigidbody r) ? r : null;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update()
@@ -21,26 +26,43 @@ public class PlayerCharacter : MonoBehaviour
 
             if (Keyboard.current.wKey.isPressed)
             {
-                rb.AddForce(new Vector3(0, 0, 10 * moveForce));
+                rb.AddRelativeForce(new Vector3(0, 0, 10 * moveForce));
             }
             if (Keyboard.current.sKey.isPressed)
             {
-                rb.AddForce(new Vector3(0, 0, -10 * moveForce));
+                rb.AddRelativeForce(new Vector3(0, 0, -10 * moveForce));
             }
             if (Keyboard.current.aKey.isPressed)
             {
-                rb.AddForce(new Vector3(-10 * moveForce, 0, 0));
+                rb.AddRelativeForce(new Vector3(-10 * moveForce, 0, 0));
             }
             if (Keyboard.current.dKey.isPressed)
             {
-                rb.AddForce(new Vector3(10 * moveForce, 0, 0));
+                rb.AddRelativeForce(new Vector3(10 * moveForce, 0, 0));
             }
         }
 
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, /*cam.transform.forward*/ transform.forward, out hit, 5.0f))
+        if (flashlight.TryGetComponent(out Light l))
         {
-            Debug.DrawLine(transform.position, hit.point, Color.red);
+            if (Keyboard.current.fKey.wasPressedThisFrame) l.enabled = !l.enabled;
+        }
+
+        //if mouse changed position this frame
+        var lookDelta = Mouse.current.delta.ReadValue();
+        if (lookDelta.magnitude > 0)
+        {
+            //set x rotation equal to change
+            transform.Rotate(Vector3.up, lookDelta.x * sensitivity * Time.deltaTime);
+            //set camera y rotation equal to change
+            cam.transform.Rotate(Vector3.left, lookDelta.y * sensitivity * Time.deltaTime);
+            //flashlight.transform.Rotate(Vector3.left, lookDelta.y * sensitivity * Time.deltaTime);
+        }
+
+        RaycastHit hit;
+        Vector3 head = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
+        if (Physics.Raycast(head, cam.transform.forward, out hit, 5.0f))
+        {
+            Debug.DrawLine(head, hit.point, Color.red);
             if (hit.collider.TryGetComponent(out Interactible inter))
             {
                 if (Keyboard.current.eKey.wasPressedThisFrame)
@@ -51,7 +73,7 @@ public class PlayerCharacter : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(transform.position, transform.forward * 5.0f, Color.green);
+            Debug.DrawRay(head, cam.transform.forward * 5.0f, Color.green);
         }
     }
 }
