@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class LightFlicker : MonoBehaviour
 {
@@ -7,7 +8,9 @@ public class LightFlicker : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        System.Random rand = new System.Random();
+        timerReset = rand.Next(10);
+        timer = timerReset;
     }
 
     // Update is called once per frame
@@ -17,6 +20,8 @@ public class LightFlicker : MonoBehaviour
         if (timer <= 0)
         {
             gameObject.GetComponent<Light>().enabled = true;
+            System.Random rand = new System.Random();
+            timerReset = rand.Next(10);
             timer = timerReset;
         }
         else if (timer <= 0.5f)
