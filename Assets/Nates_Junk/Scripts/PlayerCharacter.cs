@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,7 +25,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (rb != null)
         {
-            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0); 
+            rb.linearVelocity = new Vector3(0, 0, 0); 
           
 
             if (Keyboard.current.wKey.isPressed)
