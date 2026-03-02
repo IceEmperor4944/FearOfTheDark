@@ -72,10 +72,9 @@ public class PlayerCharacter : MonoBehaviour
         }
 
         RaycastHit hit;
-        Vector3 head = new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z);
-        if (Physics.Raycast(head, cam.transform.forward, out hit, 5.0f))
+        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 5.0f))
         {
-            Debug.DrawLine(head, hit.point, Color.red);
+            Debug.DrawLine(cam.transform.position, hit.point, Color.red);
             if (hit.collider.TryGetComponent(out Interactible inter))
             {
                 if (Keyboard.current.eKey.wasPressedThisFrame)
@@ -86,7 +85,7 @@ public class PlayerCharacter : MonoBehaviour
         }
         else
         {
-            Debug.DrawRay(head, cam.transform.forward * 5.0f, Color.green);
+            Debug.DrawRay(cam.transform.position, cam.transform.forward * 5.0f, Color.green);
         }
 
         if (isMoving == true)
