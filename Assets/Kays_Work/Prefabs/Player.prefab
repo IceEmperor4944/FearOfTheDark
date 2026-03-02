@@ -246,8 +246,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 880.4894, y: 2.3769, z: 221.77249}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4096585566591602250}
   - {fileID: 546315389985374950}
@@ -265,10 +265,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a9d1e9d11c3094a9f2b2d7ae40a7ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCharacter
-  cam: {fileID: 3543992109260124338}
+  lookControl: {fileID: 3543992109260124338}
   flashlight: {fileID: 2653097446521581338}
   footstepAudio: {fileID: 5887714449952816321}
-  moveForce: 100
+  moveForce: 10
   sensitivity: 20
   isMoving: 0
 --- !u!136 &993740671766055587
@@ -331,7 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 546315389985374950}
   m_Layer: 0
-  m_Name: Cam
+  m_Name: LookControl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

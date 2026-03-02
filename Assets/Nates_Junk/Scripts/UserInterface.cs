@@ -13,7 +13,7 @@ public class UserInterface : MonoBehaviour
         if (noteText != null)
         {
             noteFrame.SetActive(true);
-            
+
             if (noteText.TryGetComponent(out TextMeshPro textMesh))
             {
                 textMesh.text = text;
