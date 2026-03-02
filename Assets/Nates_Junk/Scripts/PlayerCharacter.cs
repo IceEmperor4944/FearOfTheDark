@@ -1,29 +1,31 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class PlayerCharacter : MonoBehaviour
 {
     Rigidbody rb;
-    [SerializeField] GameObject cam;
+    [SerializeField] GameObject lookControl;
+    [SerializeField] GameObject camera;
     [SerializeField] GameObject flashlight;
     [SerializeField] AudioSource footstepAudio;
-    [SerializeField] AudioSource flashlightAudio;
+
     public float moveForce = 1.0f;
     public float sensitivity = 10.0f;
     public bool isMoving = false;
+
     void Start()
     {
         rb = TryGetComponent(out Rigidbody r) ? r : null;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
     void Update()
     {
-        isMoving = false;
-
         if (rb != null)
         {
-            rb.linearVelocity = new Vector3(0, 0, 0);
+            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
 
             if (Keyboard.current.wKey.isPressed)
             {
@@ -47,26 +49,27 @@ public class PlayerCharacter : MonoBehaviour
             }
         }
 
+
         if (flashlight.TryGetComponent(out Light l))
         {
-            if (Keyboard.current.fKey.wasPressedThisFrame)
-            {
-                l.enabled = !l.enabled;
-                flashlightAudio.Play();
-            }
+            if (Keyboard.current.fKey.wasPressedThisFrame) l.enabled = !l.enabled;
         }
 
+        //if mouse changed position this frame
         var lookDelta = Mouse.current.delta.ReadValue();
         if (lookDelta.magnitude > 0)
         {
+            //set x rotation equal to change
             transform.Rotate(Vector3.up, lookDelta.x * sensitivity * Time.deltaTime);
-            cam.transform.Rotate(Vector3.left, lookDelta.y * sensitivity * Time.deltaTime);
+            //set camera y rotation equal to change
+            lookControl.transform.Rotate(Vector3.left, lookDelta.y * sensitivity * Time.deltaTime);
+            //flashlight.transform.Rotate(Vector3.left, lookDelta.y * sensitivity * Time.deltaTime);
         }
 
         RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 5.0f))
+        if (Physics.Raycast(camera.transform.position, camera.transform.forward, out hit, 10.0f))
         {
-            Debug.DrawLine(cam.transform.position, hit.point, Color.red);
+            Debug.DrawLine(camera.transform.position, hit.point, Color.red);
             if (hit.collider.TryGetComponent(out Interactible inter))
             {
                 if (Keyboard.current.eKey.wasPressedThisFrame)
@@ -75,19 +78,9 @@ public class PlayerCharacter : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Debug.DrawRay(cam.transform.position, cam.transform.forward * 5.0f, Color.green);
-        }
+        else Debug.DrawRay(camera.transform.position, camera.transform.forward * 5.0f, Color.green);
 
-        HandleAudio();
-    }
-
-    void HandleAudio()
-    {
-        if (isMoving && !footstepAudio.isPlaying)
-            footstepAudio.Play();
-        else if (!isMoving)
-            footstepAudio.Stop();
+        if (isMoving == true) footstepAudio.Play();
+        else footstepAudio.Stop();
     }
 }
