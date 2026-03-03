@@ -29,8 +29,9 @@ public class Note : Interactible
 
     public override void Interact(GameObject other)
     {
+        Debug.Log($"read note {noteId}");
         ui.BroadcastMessage("DisplayNote", noteTexts[noteId]);
-        if (hasJumpscare) StartCoroutine(Jumpscare()); 
+        if (hasJumpscare) StartCoroutine(Jumpscare());
         noteAudio.Play();
 
     }
