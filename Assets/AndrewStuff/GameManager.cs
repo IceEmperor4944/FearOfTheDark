@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject winUI;
     [SerializeField] GameObject settingsUI;
 
-
     static GameManager instance;
     public static GameManager Instacnce { get { return instance; } }
 
@@ -22,13 +21,6 @@ public class GameManager : MonoBehaviour
 
     GameState currentState = GameState.MainMenu;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         switch (currentState)
