@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerCharacter : MonoBehaviour
 {
     Rigidbody rb;
-    [SerializeField] GameObject cam;
+    [SerializeField] GameObject lookControl;
     [SerializeField] GameObject flashlight;
     [SerializeField] AudioSource footstepAudio;
     [SerializeField] AudioSource flashlightAudio;
@@ -64,9 +64,9 @@ public class PlayerCharacter : MonoBehaviour
         }
 
         RaycastHit hit;
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, 5.0f))
+        if (Physics.Raycast(lookControl.transform.position, lookControl.transform.forward, out hit, 10.0f))
         {
-            Debug.DrawLine(cam.transform.position, hit.point, Color.red);
+            Debug.DrawLine(lookControl.transform.position, hit.point, Color.red);
             if (hit.collider.TryGetComponent(out Interactible inter))
             {
                 if (Keyboard.current.eKey.wasPressedThisFrame)
@@ -75,10 +75,7 @@ public class PlayerCharacter : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Debug.DrawRay(cam.transform.position, cam.transform.forward * 5.0f, Color.green);
-        }
+        else Debug.DrawRay(lookControl.transform.position, lookControl.transform.forward * 5.0f, Color.green);
 
         HandleAudio();
     }
