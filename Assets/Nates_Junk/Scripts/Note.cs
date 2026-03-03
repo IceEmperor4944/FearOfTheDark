@@ -33,7 +33,6 @@ public class Note : Interactible
         ui.BroadcastMessage("DisplayNote", noteTexts[noteId]);
         if (hasJumpscare) StartCoroutine(Jumpscare());
         noteAudio.Play();
-
     }
 
     IEnumerator Jumpscare()
