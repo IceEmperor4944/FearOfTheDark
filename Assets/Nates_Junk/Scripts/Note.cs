@@ -14,7 +14,7 @@ public class Note : Interactible
 
     private string[] noteTexts =
     {
-        "They said I wouldn\'t last ten minutes in there. It\'s just an old lady\'s land. Tomorrow it\'s all coming down anyway.",
+        "Good Luck Lasting even 5 minutes in this place Arin! You've heard the rumors...",
         "He keeps talking about selling. He doesn\'t hear what I hear.",
         "He said I was sick. He said the land isn\'t alive. He doesn\'t know.",
         "They drilled too deep. The soil moved after they left. Something is breathing beneath us.",
