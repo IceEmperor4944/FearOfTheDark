@@ -60,7 +60,7 @@ public class PlayerCharacter : MonoBehaviour
         if (lookDelta.magnitude > 0)
         {
             transform.Rotate(Vector3.up, lookDelta.x * sensitivity * Time.deltaTime);
-            lookControl.transform.Rotate(Vector3.left, lookDelta.y * sensitivity * Time.deltaTime);            
+            lookControl.transform.Rotate(Vector3.left, lookDelta.y * sensitivity * Time.deltaTime);
         }
 
         RaycastHit hit;
@@ -75,7 +75,7 @@ public class PlayerCharacter : MonoBehaviour
                 }
             }
         }
-        else Debug.DrawRay(lookControl.transform.position, lookControl.transform.forward * 10.0f, Color.green);
+        else Debug.DrawRay(lookControl.transform.position, lookControl.transform.forward * 5.0f, Color.green);
 
         HandleAudio();
     }
