@@ -14,8 +14,6 @@ public class PlayerCharacter : MonoBehaviour
     void Start()
     {
         rb = TryGetComponent(out Rigidbody r) ? r : null;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
     void Update()
     {

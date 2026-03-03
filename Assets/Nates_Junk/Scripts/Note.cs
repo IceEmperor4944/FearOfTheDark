@@ -4,7 +4,7 @@ using UnityEngine;
 public class Note : Interactible
 {
     public int noteId;
-    [SerializeField] GameObject ui;
+    [SerializeField] UserInterface ui;
     [SerializeField] AudioSource noteAudio;
 
 #nullable enable
