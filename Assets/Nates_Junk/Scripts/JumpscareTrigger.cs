@@ -10,7 +10,6 @@ public class JumpscareTrigger : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") StartCoroutine(RunJumpscare());
-        if (other.tag == "Player") jumpscareAudio();
     }
 
     IEnumerator RunJumpscare()
@@ -20,14 +19,14 @@ public class JumpscareTrigger : MonoBehaviour
         //yield return new WaitForSeconds(2.0f);
         jumpscare.SetActive(true);
 
+        jumpscare.SetActive(true);
+        m_jsAudio.Play();
+
         yield return new WaitForSeconds(jumpscareLength);
         jumpscare.SetActive(false);
+
+        jumpscare.SetActive(false);
+        m_jsAudio.Stop();
     }
 
-    public void jumpscareAudio()
-    {
-        AudioSource Audio = m_jsAudio;
-        Audio.Play();
-
-    }
 }
