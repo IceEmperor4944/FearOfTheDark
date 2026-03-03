@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class JumpscareTrigger : MonoBehaviour
 {
-    [SerializeField] AudioSource m_jsAudio;
+    [SerializeField] AudioSource jumpscareAudioSource;
     [SerializeField] GameObject jumpscare;
     public float jumpscareLength = 2.0f;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player") StartCoroutine(RunJumpscare());
+        if (other.tag == "Player") JumpscareAudio();
     }
 
     IEnumerator RunJumpscare()
@@ -19,14 +20,14 @@ public class JumpscareTrigger : MonoBehaviour
         //yield return new WaitForSeconds(2.0f);
         jumpscare.SetActive(true);
 
-        jumpscare.SetActive(true);
-        m_jsAudio.Play();
-
         yield return new WaitForSeconds(jumpscareLength);
         jumpscare.SetActive(false);
-
-        jumpscare.SetActive(false);
-        m_jsAudio.Stop();
     }
 
+    public void JumpscareAudio()
+    {
+        AudioSource Audio = jumpscareAudioSource;
+        Audio.Play();
+
+    }
 }
