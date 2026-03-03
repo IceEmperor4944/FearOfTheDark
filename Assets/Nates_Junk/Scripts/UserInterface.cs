@@ -17,6 +17,8 @@ public class UserInterface : MonoBehaviour
             if (noteText.TryGetComponent(out TextMeshPro textMesh))
             {
                 textMesh.text = text;
+                gameManager.TryGetComponent(out GameManager manager);
+                manager.notesCollected++;
             }
         }
     }
