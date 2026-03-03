@@ -1,30 +1,29 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class PlayerCharacter : MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField] GameObject lookControl;
     [SerializeField] GameObject flashlight;
     [SerializeField] AudioSource footstepAudio;
-
+    [SerializeField] AudioSource flashlightAudio;
     public float moveForce = 1.0f;
     public float sensitivity = 10.0f;
     public bool isMoving = false;
-
     void Start()
     {
         rb = TryGetComponent(out Rigidbody r) ? r : null;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
     void Update()
     {
+        isMoving = false;
+
         if (rb != null)
         {
-            rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, 0);
+            rb.linearVelocity = new Vector3(0, 0, 0);
 
             if (Keyboard.current.wKey.isPressed)
             {
@@ -48,21 +47,20 @@ public class PlayerCharacter : MonoBehaviour
             }
         }
 
-
         if (flashlight.TryGetComponent(out Light l))
         {
-            if (Keyboard.current.fKey.wasPressedThisFrame) l.enabled = !l.enabled;
+            if (Keyboard.current.fKey.wasPressedThisFrame)
+            {
+                l.enabled = !l.enabled;
+                flashlightAudio.Play();
+            }
         }
 
-        //if mouse changed position this frame
         var lookDelta = Mouse.current.delta.ReadValue();
         if (lookDelta.magnitude > 0)
         {
-            //set x rotation equal to change
             transform.Rotate(Vector3.up, lookDelta.x * sensitivity * Time.deltaTime);
-            //set camera y rotation equal to change
-            lookControl.transform.Rotate(Vector3.left, lookDelta.y * sensitivity * Time.deltaTime);
-            //flashlight.transform.Rotate(Vector3.left, lookDelta.y * sensitivity * Time.deltaTime);
+            cam.transform.Rotate(Vector3.left, lookDelta.y * sensitivity * Time.deltaTime);
         }
 
         RaycastHit hit;
@@ -79,7 +77,14 @@ public class PlayerCharacter : MonoBehaviour
         }
         else Debug.DrawRay(lookControl.transform.position, lookControl.transform.forward * 5.0f, Color.green);
 
-        if (isMoving == true) footstepAudio.Play();
-        else footstepAudio.Stop();
+        HandleAudio();
+    }
+
+    void HandleAudio()
+    {
+        if (isMoving && !footstepAudio.isPlaying)
+            footstepAudio.Play();
+        else if (!isMoving)
+            footstepAudio.Stop();
     }
 }
