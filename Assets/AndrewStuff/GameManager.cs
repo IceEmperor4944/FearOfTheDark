@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject titleUI;
     [SerializeField] GameObject gameUI;
     [SerializeField] GameObject winUI;
-    [SerializeField] TMP_Text notesObject;
+    [SerializeField] TMP_Text noteCount;
     [HideInInspector] public int notesCollected = 0;
 
     [HideInInspector] public enum GameState { MainMenu, Playing, NoteOpen, Complete }
@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        notesObject.text = "Notes Collected: " + notesCollected + "/6";
+        noteCount.text = "Notes Collected: " + notesCollected + "/6";
 
         switch (currentState)
         {

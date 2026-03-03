@@ -68,7 +68,7 @@ MonoBehaviour:
   m_text: Start
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 241fd028cf5f3f6448317f1db07a2937, type: 2}
-  m_sharedMaterial: {fileID: 7602492714622226402, guid: 241fd028cf5f3f6448317f1db07a2937, type: 2}
+  m_sharedMaterial: {fileID: 6227898094711013994, guid: 241fd028cf5f3f6448317f1db07a2937, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -298,7 +298,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: OnSettings
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -540,6 +540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UserInterface
   noteFrame: {fileID: 2390647013120571690}
+  noteText: {fileID: 5221597476708227749}
   gameManager: {fileID: 0}
 --- !u!223 &7431751254494069877
 Canvas:
@@ -886,7 +887,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 241fd028cf5f3f6448317f1db07a2937, type: 2}
-  m_sharedMaterial: {fileID: 7602492714622226402, guid: 241fd028cf5f3f6448317f1db07a2937, type: 2}
+  m_sharedMaterial: {fileID: 6227898094711013994, guid: 241fd028cf5f3f6448317f1db07a2937, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1099,7 +1100,7 @@ MonoBehaviour:
   m_text: Fear of the Dark
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 241fd028cf5f3f6448317f1db07a2937, type: 2}
-  m_sharedMaterial: {fileID: 7602492714622226402, guid: 241fd028cf5f3f6448317f1db07a2937, type: 2}
+  m_sharedMaterial: {fileID: 6227898094711013994, guid: 241fd028cf5f3f6448317f1db07a2937, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1441,7 +1442,7 @@ MonoBehaviour:
   m_text: COUNT
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 30f18a306199f094784e6f58b6464eb4, type: 2}
-  m_sharedMaterial: {fileID: -142333537808433816, guid: 30f18a306199f094784e6f58b6464eb4, type: 2}
+  m_sharedMaterial: {fileID: 641240923502108692, guid: 30f18a306199f094784e6f58b6464eb4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2347,7 +2348,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 241fd028cf5f3f6448317f1db07a2937, type: 2}
-  m_sharedMaterial: {fileID: 7602492714622226402, guid: 241fd028cf5f3f6448317f1db07a2937, type: 2}
+  m_sharedMaterial: {fileID: 6227898094711013994, guid: 241fd028cf5f3f6448317f1db07a2937, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

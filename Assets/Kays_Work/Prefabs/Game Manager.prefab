@@ -47,4 +47,6 @@ MonoBehaviour:
   titleUI: {fileID: 0}
   gameUI: {fileID: 0}
   winUI: {fileID: 0}
-  settingsUI: {fileID: 0}
+  noteCount: {fileID: 0}
+  notesCollected: 0
+  currentState: 0
